@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { isDark } from '~/composables'
 </script>
 
 <template>
@@ -9,26 +8,24 @@ import { isDark } from '~/composables'
       to="/"
       focusable="false"
     >
-      <div i-ri-bear-smile-fill />
-      <img v-show="isDark" src="/logo-dark.svg" alt="logo" />
-      <img v-show="!isDark" src="/favicon.ico" alt="logo" />
+      <div class="text-2xl" i-carbon-bat />
     </router-link>
     <nav class="nav">
       <div class="spacer" />
       <div class="right">
         <router-link to="/posts">
           <span class="lt-md:hidden">Blog</span>
-          <ri-article-line class="md:hidden" />
+          <i-carbon-catalog class="md:hidden" />
         </router-link>
         <router-link to="/projects">
           <span class="lt-md:hidden">Projects</span>
-          <ri-lightbulb-line class="md:hidden" />
+          <i-carbon-list-bulleted class="md:hidden" />
         </router-link>
         <router-link to="/bookmarks" title="Bookmarks" class="lt-md:hidden">
-          <ri-bookmark-line />
+          <i-carbon-bookmark />
         </router-link>
-        <a href="https://github.com/limeiwang" target="_blank" title="GitHub">
-          <uil-github-alt />
+        <a href="https://github.com/hedongshu" target="_blank" title="GitHub">
+          <i-carbon-logo-github />
         </a>
         <!-- <a href="/feed.xml" target="_blank" title="RSS" class="lt-md:hidden">
           <la-rss-square style="font-size:1.25rem; margin: 0 -0.125rem;" />

@@ -2,6 +2,7 @@
 
 import { resolve } from 'path'
 import * as fs from 'fs'
+import { url } from 'inspector'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
@@ -41,6 +42,7 @@ export default defineConfig({
           const md = fs.readFileSync(path, 'utf-8')
           const { data } = matter(md)
           route.meta = Object.assign(route.meta || {}, { frontmatter: data })
+          route.path = encodeURI(route.path)
         }
 
         return route

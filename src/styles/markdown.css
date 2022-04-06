@@ -5,9 +5,7 @@
   --prism-font-family: 'DM Mono', monospace;
 }
 
-.prose img {
-  width: 100%;
-}
+
 
 html:not(.dark) .prose {
   --prism-foreground: #393a34;

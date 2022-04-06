@@ -6,14 +6,17 @@ declare module 'vue' {
   export interface GlobalComponents {
     Counter: typeof import('./src/components/Counter.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
-    Footercccc: typeof import('./src/components/Footercccc.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    ICarbonBookmark: typeof import('~icons/carbon/bookmark')['default']
+    ICarbonCatalog: typeof import('~icons/carbon/catalog')['default']
+    ICarbonListBulleted: typeof import('~icons/carbon/list-bulleted')['default']
+    ICarbonLogoGithub: typeof import('~icons/carbon/logo-github')['default']
+    ICarbonMoon: typeof import('~icons/carbon/moon')['default']
+    ICarbonSun: typeof import('~icons/carbon/sun')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
     ListPosts: typeof import('./src/components/ListPosts.vue')['default']
     ListProjects: typeof import('./src/components/ListProjects.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     Post: typeof import('./src/components/Post.vue')['default']
-    README: typeof import('./src/components/README.md')['default']
     ToggleTheme: typeof import('./src/components/ToggleTheme.vue')['default']
   }
 }

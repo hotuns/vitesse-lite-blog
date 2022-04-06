@@ -1,5 +1,5 @@
 @import './markdown.css';
-@import './prose.css';
+/* @import './prose.css'; */
 
 html,
 body,
@@ -8,6 +8,12 @@ body,
   margin: 0;
   padding: 0;
 }
+
+::selection {
+  background: #0d342f;
+  color: #d9c3ab;
+}
+
 
 html.dark {
   background: #121212;
@@ -18,7 +24,7 @@ html.dark {
 }
 
 #nprogress .bar {
-  background: rgb(13,148,136);
+  background: #0d342f;
   opacity: 0.75;
   position: fixed;
   z-index: 1031;

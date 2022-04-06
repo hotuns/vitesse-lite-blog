@@ -17,7 +17,7 @@ AST（Abstract Syntax Tree），中文叫做抽象语法树，是源代码语法
 回答之前，我们先看一下代码组织结构。
 
 ```js
-const a = 'hello world';
+const a = 'hello world'
 ```
 
 如上图，正是我们常写的JavaScript代码。细心的人可以观察到代码中是由符号 **=** 连接组成的。
@@ -59,7 +59,6 @@ const a = 'hello world';
   ],
   "sourceType": "module"
 }
-
 ```
 
 对比转换前后的差别，就可以看出为什么抽象了。
@@ -119,7 +118,6 @@ const a = 'hello world';
         "value": "'hello world'"
     }
 ]
-
 ```
 
 #### 语法分析
@@ -153,7 +151,6 @@ const a = 'hello world';
   ],
   "sourceType": "script"
 }
-
 ```
 
 在拿到了`AST`后，我们就可以分析`AST`，在此基础上做一些自己的事情。比如最简单的将代码中的某一变量都替换成另一个名字。
@@ -189,7 +186,6 @@ const a = 'hello world';
   ],
   "sourceType": "script"
 }
-
 ```
 
 通过对比分析，发现唯一的不同就是`type`为`Identifier`的`id`的`name`属性值不一样。接下来就可以通过修改`AST`来实现我们的需求了。
@@ -197,28 +193,27 @@ const a = 'hello world';
 我们需要安装[estraverse](https://link.juejin.cn/?target=https://github.com/estools/estraverse)（遍历AST）和[escodegen](https://link.juejin.cn/?target=https://github.com/estools/escodegen)（根据AST生成JS）这两个包。
 
 ```js
-const esprima = require('esprima');
-const estraverse = require('estraverse');
-const escodegen = require('escodegen');
+const esprima = require('esprima')
+const estraverse = require('estraverse')
+const escodegen = require('escodegen')
 
-const program = "const a = 'hello world'";
-const ASTree = esprima.parseScript(program);
+const program = 'const a = \'hello world\''
+const ASTree = esprima.parseScript(program)
 
 function changeAToB(node) {
-    if (node.type === 'Identifier') {
-        node.name = 'b';
-    }
+  if (node.type === 'Identifier')
+    node.name = 'b'
+
 }
 
 estraverse.traverse(ASTree, {
-    enter(node) {
-        changeAToB(node);
-    }
-});
+  enter(node) {
+    changeAToB(node)
+  },
+})
 
-const ASTreeAfterChange = escodegen.generate(ASTree);
-console.log(ASTreeAfterChange); // const b = 'hello world'
-
+const ASTreeAfterChange = escodegen.generate(ASTree)
+console.log(ASTreeAfterChange) // const b = 'hello world'
 ```
 
 看，是不是很容易就可以实现。掌握了`AST`的知识后，我们能做很多事情，各种`babel`的插件也是这么产生的，只不过用的库不一样。

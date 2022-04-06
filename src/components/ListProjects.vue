@@ -4,9 +4,7 @@ defineProps<{ projects: Record<string, any[]> }>()
 
 <template>
   <template v-for="key in Object.keys(projects)" :key="key">
-    <h4 class="mt-10 font-bold">
-      {{ key }}
-    </h4>
+    <h4 class="mt-10 font-bold">{{ key }}</h4>
     <div class="project-grid py-2 -mx-3 gap-2">
       <a
         v-for="item, idx in projects[key]"
@@ -41,7 +39,7 @@ defineProps<{ projects: Record<string, any[]> }>()
         >&nbsp;sponsoring me&nbsp;</a>to support me keeping them sustainable. Cheers! :)
       </em>
     </p>
-  </div> -->
+  </div>-->
 </template>
 
 <style scoped>

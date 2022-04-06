@@ -37,6 +37,9 @@ specifiers:
 
 dependencies:
   '@vueuse/core': 8.2.4_vue@3.2.31
+  '@vueuse/head': 0.7.5_vue@3.2.31
+  nprogress: 0.2.0
+  prism-theme-vars: 0.2.2
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
 
@@ -49,15 +52,12 @@ devDependencies:
   '@unocss/reset': 0.30.11
   '@vitejs/plugin-vue': 2.3.1_vite@2.9.1+vue@3.2.31
   '@vue/test-utils': 2.0.0-rc.18_vue@3.2.31
-  '@vueuse/head': 0.7.5_vue@3.2.31
   dayjs: 1.11.0
   eslint: 8.12.0
   jsdom: 19.0.0
   markdown-it-link-attributes: 4.0.0
   markdown-it-prism: 2.2.3
-  nprogress: 0.2.0
   pnpm: 6.32.4
-  prism-theme-vars: 0.2.2
   typescript: 4.6.3
   unocss: 0.30.11
   unplugin-auto-import: 0.6.9_@vueuse+core@8.2.4+vite@2.9.1
@@ -784,7 +784,7 @@ packages:
       vue: '>=3'
     dependencies:
       vue: 3.2.31
-    dev: true
+    dev: false
 
   /@vueuse/metadata/8.2.4:
     resolution: {integrity: sha512-mn4FLULZAHd6r6vo5hLz+99xzwlVDP9qeVtZGV2Ik40m0zETe2okUr3O1Yoz6FReUoc7KAPrf0/GFpWEXVDAnQ==}
@@ -3003,7 +3003,7 @@ packages:
 
   /nprogress/0.2.0:
     resolution: {integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=}
-    dev: true
+    dev: false
 
   /nwsapi/2.2.0:
     resolution: {integrity: sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==}
@@ -3293,7 +3293,7 @@ packages:
 
   /prism-theme-vars/0.2.2:
     resolution: {integrity: sha512-EL9ifuU/F8tEldoCa2sspiiLWysCL54xDbf2gN/ubwdtbuJROqOGopG5kSwunapwaioT+jLUQ/Ky+7jnv62xJA==}
-    dev: true
+    dev: false
 
   /prismjs/1.27.0:
     resolution: {integrity: sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==}

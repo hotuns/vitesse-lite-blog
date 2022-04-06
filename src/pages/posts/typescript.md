@@ -27,7 +27,7 @@ description: 基础typescript
 在 TypeScript 中，使用 **boolean** 定义布尔值类型：
 
 ``` ts
-let flag: boolean = true;
+const flag = true
 ```
 
 ## 数值（Number）
@@ -35,15 +35,15 @@ let flag: boolean = true;
 使用 **number** 定义数值类型
 
 ```ts
-let num: number = 12;
+const num = 12
 // ES6中的二进制表示法
-let binaryNum: number = 0b1100;
+const binaryNum = 0b1100
 // ES6中的八进制表示法
-let octalNum: number = 130;
+const octalNum = 130
 // 16进制字面量表示法
-let hexNum: number = 0x12d;
+const hexNum = 0x12D
 // 定义NaN
-let nonNum: number = NaN;
+const nonNum = NaN
 ```
 
 ## 字符串（String）
@@ -51,12 +51,12 @@ let nonNum: number = NaN;
 使用 **string** 定义字符串类型：
 
 ```ts
-let myName: string = 'Tom';
-let myAge: number = 25;
+const myName = 'Tom'
+const myAge = 25
 
 // 模板字符串
-let sentence: string = `Hello, my name is ${myName}.
-I'll be ${myAge + 1} years old next month.`;
+const sentence = `Hello, my name is ${myName}.
+I'll be ${myAge + 1} years old next month.`
 ```
 
 ## 数组（Array）
@@ -64,13 +64,13 @@ I'll be ${myAge + 1} years old next month.`;
 数组有两种声明类型的方式，第一种是在类型后面加上方括号 **[]**，表示该数组由此种类型的元素构成。
 
 ```ts
-let dataArr: number[] = [12, 67, 3, 7, 199];
+const dataArr: number[] = [12, 67, 3, 7, 199]
 ```
 
 第二种是使用数组泛型 **Array<元素类型>** 来声明数组的类型。
 
 ```ts
-let dataArr: Array<number> = [99, 65, 2, 8, 11];
+const dataArr: Array<number> = [99, 65, 2, 8, 11]
 ```
 
 ## 元组（Tuple）
@@ -78,7 +78,7 @@ let dataArr: Array<number> = [99, 65, 2, 8, 11];
 元组是数组的一种，能够存储不同类型的元素。
 
 ```ts
-let tupleArr: [number, string] = [22, 'tree'];
+const tupleArr: [number, string] = [22, 'tree']
 ```
 
 需要注意的是，元组中元素的类型、位置及个数应当与声明的类型、位置及个数保持一致。
@@ -100,15 +100,15 @@ enum 枚举名 {
 
 ```ts
 enum TheFiveElements { metal, wood, water, fire, earth }
-let f: TheFiveElements = TheFiveElements.wood;
+const f: TheFiveElements = TheFiveElements.wood
 console.log(f) // 输出为1，如果标识符未赋值，则默认是从零开始的下标号
 ```
 
 ```ts
 enum TheFiveElements { metal, wood = 2, water, fire, earth }
-let f1: TheFiveElements = TheFiveElements.wood;
+const f1: TheFiveElements = TheFiveElements.wood
 console.log(f1) // 输出为2，如果标识符已赋值，则为指定的值
-let f2: TheFiveElements = TheFiveElements.water;
+const f2: TheFiveElements = TheFiveElements.water
 console.log(f2) // 输出为3，未赋值，则从已赋值的标号处递增
 ```
 
@@ -117,9 +117,9 @@ console.log(f2) // 输出为3，未赋值，则从已赋值的标号处递增
 在开发过程中，有时候会碰到类型并不清楚的变量，此时可以将变量设置为any类型，any类型能够直接通过类型检查器的检查。any类型可用于声明DOM节点。
 
 ```ts
-let value: any = 'Tom';
-value = 99;
-let container:any = document.getElementById('container');
+let value: any = 'Tom'
+value = 99
+const container: any = document.getElementById('container')
 ```
 
 ## 空值（Void）
@@ -128,7 +128,7 @@ JavaScript 没有空值（Void）的概念，在 TypeScript 中，可以用 **vo
 
 ```ts
 function alertName(): void {
-    alert('My name is Tom');
+  alert('My name is Tom')
 }
 ```
 
@@ -137,8 +137,8 @@ function alertName(): void {
 在 TypeScript 中，可以使用 **null** 和 **undefined** 来定义这两个原始数据类型：
 
 ```ts
-let u: undefined = undefined;
-let n: null = null;
+const u = undefined
+const n = null
 ```
 
 ## Never
@@ -146,9 +146,9 @@ let n: null = null;
 **never**类型是任何类型的子类型，能够赋值给任何类型，而**never**类型没有子类型，因此声明为 **never**的变量只能被 **never** 类型所赋值。**never**类型可用于声明总会抛出异常或永远没有返回值的函数表达式以及箭头函数表达式的返回值类型。
 
 ```ts
-let error: never;
+let error: never
 error = (() => {
-  throw new Error('ERROR');
+  throw new Error('ERROR')
 })()
 ```
 
@@ -157,9 +157,9 @@ error = (() => {
 Object类型表示除**number**，**string**，**boolean**，**symbol**，**null**或**undefined**之外的类型。
 
 ```ts
-let person: object = {
-    name: 'Lily',
-    age: 16
+const person: object = {
+  name: 'Lily',
+  age: 16,
 }
 ```
 
@@ -171,16 +171,16 @@ let person: object = {
 
 ```ts
 interface Person {
-    readonly id: number; // 只读属性
-    name: string;
-    age?: number; // 可选属性
-    [propName: string]: any; // 任意属性
+  readonly id: number; // 只读属性
+  name: string
+  age?: number; // 可选属性
+  [propName: string]: any; // 任意属性
 }
 
-let tom: Person = {
-    name: 'Tom',
-    age: 25
-};
+const tom: Person = {
+  name: 'Tom',
+  age: 25,
+}
 ```
 
 需要注意的是，接口一般首字母大写。一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集。
@@ -189,18 +189,18 @@ let tom: Person = {
 
 ```ts
 interface Person {
-    readonly id: number;
-    name: string;
-    age?: number;
-    [propName: string]: any;
+  readonly id: number
+  name: string
+  age?: number
+  [propName: string]: any
 }
 
-let tom: Person = {
-    name: 'Tom',
-    gender: 'male'
-};
+const tom: Person = {
+  name: 'Tom',
+  gender: 'male',
+}
 
-tom.id = 89757;
+tom.id = 89757
 
 // index.ts(8,5): error TS2322: Type '{ name: string; gender: string; }' is not assignable to type 'Person'.
 //   Property 'id' is missing in type '{ name: string; gender: string; }'.
@@ -213,19 +213,19 @@ tom.id = 89757;
 
 ```ts
 interface Cat {
-    name: string;
-    run(): void;
+  name: string
+  run(): void
 }
 interface Fish {
-    name: string;
-    swim(): void;
+  name: string
+  swim(): void
 }
 
 function isFish(animal: Cat | Fish) {
-    if (typeof (animal as Fish).swim === 'function') {
-        return true;
-    }
-    return false;
+  if (typeof (animal as Fish).swim === 'function')
+    return true
+
+  return false
 }
 ```
 
@@ -235,17 +235,17 @@ function isFish(animal: Cat | Fish) {
 
 ```ts
 class ApiError extends Error {
-    code: number = 0;
+  code = 0
 }
 class HttpError extends Error {
-    statusCode: number = 200;
+  statusCode = 200
 }
 
 function isApiError(error: Error) {
-    if (typeof (error as ApiError).code === 'number') {
-        return true;
-    }
-    return false;
+  if (typeof (error as ApiError).code === 'number')
+    return true
+
+  return false
 }
 ```
 
@@ -257,19 +257,19 @@ ECMAScript 的内置对象
 **Boolean**、**Error**、**Date**、**RegExp** 等。
 
 ```ts
-let b: Boolean = new Boolean(1);
-let e: Error = new Error('Error occurred');
-let d: Date = new Date();
-let r: RegExp = /[a-z]/;
+const b: Boolean = new Boolean(1)
+const e: Error = new Error('Error occurred')
+const d: Date = new Date()
+const r = /[a-z]/
 ```
 
 DOM 和 BOM 的内置对象  
 **Document**、**HTMLElement**、**Event**、**NodeList** 等。
 
 ```ts
-let body: HTMLElement = document.body;
-let allDiv: NodeList = document.querySelectorAll('div');
-document.addEventListener('click', function(e: MouseEvent) {
+const body: HTMLElement = document.body
+const allDiv: NodeList = document.querySelectorAll('div')
+document.addEventListener('click', (e: MouseEvent) => {
   // Do something
-});
+})
 ```

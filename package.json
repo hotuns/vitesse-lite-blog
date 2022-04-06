@@ -22,6 +22,7 @@
     "@unocss/reset": "^0.30.11",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/test-utils": "^2.0.0-rc.18",
+    "dayjs": "^1.11.0",
     "eslint": "^8.12.0",
     "jsdom": "^19.0.0",
     "markdown-it-link-attributes": "^4.0.0",
@@ -38,8 +39,5 @@
     "vite-plugin-pages": "^0.22.0",
     "vitest": "^0.8.4",
     "vue-tsc": "^0.33.9"
-  },
-  "eslintConfig": {
-    "extends": "@antfu"
   }
 }

@@ -1,7 +1,12 @@
 ---
 title: HDS
 ---
+## 成事不说，遂事不谏，既往不咎。
 
-Hey, I am HDS, a coder.
+---
 
-You can follow me on [知乎](https://www.zhihu.com/people/bu-shi-dong-xi-9) and [GitHub](https://github.com/limeiwang). Feel free to message me or [drop me an email](mailto:hedongshu@foxmail.com).
+可以在这里找到我
+- [知乎](https://www.zhihu.com/people/bu-shi-dong-xi-9)
+- [GitHub](https://github.com/limeiwang)
+- [Email](mailto:hedongshu@foxmail.com)
+- [BiliBili](https://space.bilibili.com/39941520)

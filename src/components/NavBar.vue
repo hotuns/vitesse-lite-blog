@@ -9,6 +9,7 @@ import { isDark } from '~/composables'
       to="/"
       focusable="false"
     >
+      <div i-ri-bear-smile-fill />
       <img v-show="isDark" src="/logo-dark.svg" alt="logo" />
       <img v-show="!isDark" src="/favicon.ico" alt="logo" />
     </router-link>

@@ -6,6 +6,15 @@ declare module 'vue' {
   export interface GlobalComponents {
     Counter: typeof import('./src/components/Counter.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    Footercccc: typeof import('./src/components/Footercccc.vue')['default']
+    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Icon: typeof import('./src/components/Icon.vue')['default']
+    ListPosts: typeof import('./src/components/ListPosts.vue')['default']
+    ListProjects: typeof import('./src/components/ListProjects.vue')['default']
+    NavBar: typeof import('./src/components/NavBar.vue')['default']
+    Post: typeof import('./src/components/Post.vue')['default']
+    README: typeof import('./src/components/README.md')['default']
+    ToggleTheme: typeof import('./src/components/ToggleTheme.vue')['default']
   }
 }
 

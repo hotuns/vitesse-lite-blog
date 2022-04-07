@@ -2,10 +2,11 @@
 
 import { resolve } from 'path'
 import * as fs from 'fs'
-import { url } from 'inspector'
 import { defineConfig } from 'vite'
+import generateSitemap from 'vite-ssg-sitemap'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
+import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
@@ -17,8 +18,10 @@ import Prism from 'markdown-it-prism'
 import LinkAttributes from 'markdown-it-link-attributes'
 import { VueUseComponentsResolver } from 'unplugin-vue-components/resolvers'
 import matter from 'gray-matter'
-
-const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
+// @ts-expect-error missing types
+import TOC from 'markdown-it-table-of-contents'
+import anchor from 'markdown-it-anchor'
+import { slugify } from './scripts/slugify'
 
 export default defineConfig({
   resolve: {
@@ -34,20 +37,30 @@ export default defineConfig({
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
+      dirs: [
+        { dir: 'src/pages', baseRoute: '' },
+        { dir: 'post', baseRoute: 'post' },
+      ],
       extensions: ['vue', 'md'],
       extendRoute(route) {
-        const path = resolve(__dirname, route.component.slice(1))
-
-        if (!path.includes('projects.md')) {
+        if (route.name && route.component.startsWith('/post/')) {
+          const path = resolve(__dirname, route.component.slice(1))
           const md = fs.readFileSync(path, 'utf-8')
           const { data } = matter(md)
-          route.meta = Object.assign(route.meta || {}, { frontmatter: data })
+
+          if (!data.type)
+            data.type = 'blog'
+
+          route.meta = Object.assign(route.meta || {}, { frontmatter: data, layout: 'post' })
           route.path = encodeURI(route.path)
         }
 
         return route
       },
     }),
+
+    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+    Layouts(),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
@@ -76,17 +89,34 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-md
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
     Markdown({
-      wrapperClasses: markdownWrapperClasses,
+      wrapperClasses: 'prose m-auto',
       headEnabled: true,
+      markdownItOptions: {
+        quotes: '""\'\'',
+      },
       markdownItSetup(md) {
         // https://prismjs.com/
         md.use(Prism)
+
         md.use(LinkAttributes, {
           matcher: (link: string) => /^https?:\/\//.test(link),
           attrs: {
             target: '_blank',
             rel: 'noopener',
           },
+        })
+
+        md.use(anchor, {
+          slugify,
+          permalink: anchor.permalink.linkInsideHeader({
+            symbol: '#',
+            renderAttrs: () => ({ 'aria-hidden': 'true' }),
+          }),
+        })
+
+        md.use(TOC, {
+          includeLevel: [1, 2, 3],
+          slugify,
         })
       },
     }),
@@ -104,6 +134,13 @@ export default defineConfig({
     // Visit http://localhost:3333/__inspect/ to see the inspector
     Inspect(),
   ],
+
+  // https://github.com/antfu/vite-ssg
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    onFinished() { generateSitemap() },
+  },
 
   // https://github.com/vitest-dev/vitest
   test: {

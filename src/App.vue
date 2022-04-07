@@ -1,7 +1,10 @@
 <template>
   <NavBar />
   <main class="px-7 py-10">
-    <router-view />
+    <article>
+      <router-view />
+
+    </article>
     <Footer />
   </main>
 </template>

@@ -17,6 +17,10 @@
           <span class="lt-md:hidden">Blog</span>
           <i-carbon-catalog class="md:hidden" />
         </router-link>
+        <router-link to="/talks">
+          <span class="lt-md:hidden">talks</span>
+          <i-carbon-catalog class="md:hidden" />
+        </router-link>
         <router-link to="/projects">
           <span class="lt-md:hidden">Projects</span>
           <i-carbon-list-bulleted class="md:hidden" />

@@ -1,17 +1,20 @@
 import { ViteSSG } from 'vite-ssg'
 import generatedRoutes from 'virtual:generated-pages'
-import dayjs from 'dayjs'
-import LocalizedFormat from 'dayjs/plugin/localizedFormat'
+import { setupLayouts } from 'virtual:generated-layouts'
 import NProgress from 'nprogress'
 import type { RouterScrollBehavior } from 'vue-router'
+import dayjs from 'dayjs'
+import LocalizedFormat from 'dayjs/plugin/localizedFormat.js'
 
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
+import './styles/prose.css'
+import './styles/markdown.css'
 import 'uno.css'
 
-const routes = generatedRoutes
+const routes = setupLayouts(generatedRoutes)
 
 const scrollBehavior: RouterScrollBehavior = (to, from, savedPosition) => {
   if (savedPosition)

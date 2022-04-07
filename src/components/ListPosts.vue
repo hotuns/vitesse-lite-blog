@@ -8,8 +8,11 @@ const props = defineProps<{
 }>()
 
 const router = useRouter()
-const routes = (router.getRoutes() as MyRouteRecordNormalized[])
-  .filter(i => i.path.startsWith('/posts') && i.meta.frontmatter.date)
+const route = useRoute()
+
+let routes = (router.getRoutes() as MyRouteRecordNormalized[])
+routes = routes
+  .filter(i => i.name && i.path.startsWith('/post/') && i.meta.frontmatter && i.meta.frontmatter.date)
   .sort((a, b) => +new Date(b.meta.frontmatter.date) - +new Date(a.meta.frontmatter.date))
 
 const posts = computed(() =>
@@ -19,8 +22,11 @@ const posts = computed(() =>
 </script>
 
 <template>
+  <template v-if="!posts.length">
+    <div py2 op50>{ nothing here yet }</div>
+  </template>
   <ul>
-    <router-link
+    <app-link
       v-for="route in posts"
       :key="route.path"
       class="item block font-normal mb-6 mt-2 no-underline"
@@ -36,6 +42,13 @@ const posts = computed(() =>
         </div>
         <div class="time opacity-50 text-sm -mt-1">{{ formatDate(route.meta.frontmatter.date) }}</div>
       </li>
-    </router-link>
+    </app-link>
   </ul>
+
+  <div v-if="route.path !== '/'" class="prose m-auto mt-8 mb-8">
+    <router-link
+      :to="route.path.split('/').slice(0, -1).join('/') || '/'"
+      class="font-mono no-underline opacity-50 hover:opacity-75"
+    >cd ..</router-link>
+  </div>
 </template>

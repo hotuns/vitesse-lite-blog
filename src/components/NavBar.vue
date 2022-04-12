@@ -3,29 +3,25 @@
 
 <template>
   <header class="header z-40">
-    <router-link
-      class="w-10 h-10 absolute lg:fixed m-6 select-none outline-none"
-      to="/"
-      focusable="false"
-    >
+    <router-link class="w-10 h-10 absolute lg:fixed m-6 select-none outline-none" to="/" focusable="false">
       <div class="text-2xl" i-carbon-bat />
     </router-link>
     <nav class="nav">
       <div class="spacer" />
       <div class="right">
         <router-link to="/posts">
-          <span class="lt-md:hidden">Blog</span>
+          <span class="lt-md:hidden">文章</span>
           <i-carbon-catalog class="md:hidden" />
         </router-link>
         <router-link to="/talks">
-          <span class="lt-md:hidden">talks</span>
+          <span class="lt-md:hidden">生活</span>
           <i-carbon-catalog class="md:hidden" />
         </router-link>
         <router-link to="/projects">
-          <span class="lt-md:hidden">Projects</span>
+          <span class="lt-md:hidden">项目</span>
           <i-carbon-list-bulleted class="md:hidden" />
         </router-link>
-        <router-link to="/bookmarks" title="Bookmarks" class="lt-md:hidden">
+        <router-link to="/bookmarks" title="书签" class="lt-md:hidden">
           <i-carbon-bookmark />
         </router-link>
         <a href="https://github.com/hedongshu" target="_blank" title="GitHub">
@@ -59,7 +55,7 @@
   box-sizing: border-box;
 }
 
-.nav > * {
+.nav>* {
   margin: auto;
 }
 
@@ -87,7 +83,7 @@
   grid-auto-flow: column;
 }
 
-.nav .right > * {
+.nav .right>* {
   margin: auto;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <a class="select-none" title="Toggle Color Scheme" @click="toggleDark">
+  <a class="select-none" title="切换主题" @click="toggleDark">
     <i-carbon-moon v-show="isDark" />
     <i-carbon-sun v-show="!isDark" />
   </a>

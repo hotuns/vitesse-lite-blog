@@ -1,10 +1,12 @@
 ---
-title: 工作总结 nodejs
+title: 工作中使用过的nodejs工具
 date: 2021-11-25T16:00:00Z
 lang: zh
 duration: 10min
 description: 聊聊工作中使用过的nodejs工具
 ---
+
+[toc]
 
 # nodejs
 > Node.js 是一个基于 Chrome V8 引擎的 Javascript 运行环境
@@ -21,7 +23,7 @@ nvm可以做些什么？
 3. nvm可以安装多个版本并可以在多个版本中来回切换。
 
 **nvm安装使用：**
-```
+```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
 nvm --version // 查看版本号

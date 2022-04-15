@@ -90,9 +90,9 @@ $ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 - 例如命令模式下的:e、:w、:q、:sp系列、:tab系列等命令实际上都不是调用的nvim指令完成的，而是调用的vscode指令，不要像在nvim中一样使用它们，比如ctrl+r命令在nvim下是redo命令，而在vscode下则不会有任何效果，你可以在后面通过更改热键来改变它们
 - 可视模式不会产生vscode选择，因此任何需要选择的vscode命令都不起作用。但是可以通过默认热键(f1/ctrl/cmd+shift+p)从可视模式调用vscode命令选择器将vim选择转换为真正的vscode选择。对于某些命令（例如注释和格式设置），此转换也会自动完成。如果您使用一些自定义映射来调用依赖于真实vscode选择的vscode命令，您可以使用VSCodeNotifyRange/VSCodeNotifyRangePo（第一个逐行，后一个字符），它将在调用命令之前会将vim视觉模式选择转换为vscode选择
 - 当您键入某些命令时，它们可能会替换另一个命令，例如:write将替换为:Write.这是正常的。
-- 滚动是由VSCode完成的。而 <C-d> / <C-u> / etc略有不同
+- 滚动是由VSCode完成的。而 `<C-d> / <C-u> / etc`略有不同
 - 编辑器自定义（相对行号、滚动条等）由VSCode处理
-- 点重复(.)略有不同-在更改范围内移动光标不会破坏重复序列。在Neovim中，如果您abc<cursor>在插入模式下输入，则将光标移至a<cursor>bc并1在此处输入重复序列将是1.但是在vscode中它会是a1bc.另一个区别是，当您在插入模式下删除某些文本时，点重复仅从右到左起作用，这意味着在运行点重复时它会将Del键视为BS键
+- 点重复(.)略有不同-在更改范围内移动光标不会破坏重复序列。在Neovim中，如果您`abc<cursor>`在插入模式下输入，则将光标移至`a<cursor>bc`并1在此处输入重复序列将是1.但是在vscode中它会是a1bc.另一个区别是，当您在插入模式下删除某些文本时，点重复仅从右到左起作用，这意味着在运行点重复时它会将Del键视为BS键
 
 
 

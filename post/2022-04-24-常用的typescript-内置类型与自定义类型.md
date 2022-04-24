@@ -9,7 +9,7 @@ date: 2022-04-24T08:26:01.420Z
 
 例如在业务中，我们需要渲染一个表格，往往需要定义：
 
-```angelscript
+```typescript
 interface Row {
   user: string
   email: string
@@ -37,7 +37,7 @@ const model: SearchModel = {
 
 这样写会出现一个问题，如果后面id 类型要改成 `string`，我们需要改 2 处地方，不小心的话可能就会忘了改另外一处。所以，有些人会这样写：
 
-```pgsql
+```typescript
 interface SearchModel {
   user?: Row['user']
   id?: Row['id']
@@ -46,7 +46,7 @@ interface SearchModel {
 
 这固然是一个解决方法，但事实上，我们前面已经定义了 `Row` 类型，这其实是可以更优雅地复用的:
 
-```qml
+```typescript
 const model: Partial<Row> = {
   user: '',
   id: undefined 
@@ -65,7 +65,7 @@ const model2: Partial<Pick<Row, 'user'|'id'>>
 
 将类型 T 的所有属性标记为可选属性
 
-```elm
+```typescript
 type Partial<T> = {
     [P in keyof T]?: T[P]
 }
@@ -97,7 +97,7 @@ const model: Partial<AccountInfo> = {
 
 与 Partial 相反，Required 将类型 T 的所有属性标记为必选属性
 
-```elm
+```typescript
 type Required<T> = {
     [P in keyof T]-?: T[P];
 };
@@ -107,7 +107,7 @@ type Required<T> = {
 
 将所有属性标记为 readonly, 即不能修改
 
-```elm
+```typescript
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
 };
@@ -117,7 +117,7 @@ type Readonly<T> = {
 
 从 T 中过滤出属性 K
 
-```scala
+```typescript
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 };
@@ -146,7 +146,7 @@ type CoreInfo = Pick<AccountInfo, 'name' | 'email'>
 
 标记对象的 key value类型
 
-```scala
+```typescript
 type Record<K extends keyof any, T> = {
     [P in K]: T;
 };
@@ -154,7 +154,7 @@ type Record<K extends keyof any, T> = {
 
 使用场景:
 
-```scss
+```typescript
 // 定义 学号(key)-账号信息(value) 的对象
 const accountMap: Record<number, AccountInfo> = {
   10001: {
@@ -179,20 +179,20 @@ const lengths = mapObject(names, s => s.length);  // { foo: number, bar: number,
 
 移除 T 中的 U 属性
 
-```excel
+```typescript
 type Exclude<T, U> = T extends U ? never : T;
 ```
 
 使用场景：
 
-```javascript
+```typescript
 // 'a' | 'd'
 type A = Exclude<'a'|'b'|'c'|'d' ,'b'|'c'|'e' >  
 ```
 
 乍一看好像这个没啥卵用，但是，我们通过一番操作，之后就可以得到 `Pick` 的反操作：
 
-```scala
+```typescript
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 type NonCoreInfo = Omit<AccountInfo, 'name' | 'email'>
@@ -208,13 +208,13 @@ type NonCoreInfo = Omit<AccountInfo, 'name' | 'email'>
 
 `Exclude` 的反操作，取 T，U两者的交集属性
 
-```excel
+```typescript
 type Extract<T, U> = T extends U ? T : never;
 ```
 
 使用 demo：
 
-```ada
+```typescript
 // 'b'|'c'
 type A = Extract<'a'|'b'|'c'|'d' ,'b'|'c'|'e' >  
 ```
@@ -245,7 +245,7 @@ function f2<T extends string | undefined>(x: T, y: NonNullable<T>) {
 
 获取一个函数的所有参数类型
 
-```scala
+```typescript
 // 此处使用 infer P 将参数定为待推断类型
 // T 符合函数特征时，返回参数类型，否则返回 never
 type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
@@ -279,15 +279,15 @@ type FillParams = Parameters<typeof Array.prototype.fill>
 
 ### ConstructorParameters<T>
 
-类似于 `Parameters<T>`, ConstructorParameters 获取一个类的构造函数参数
+类似于 `Parameters<T>`, `ConstructorParameters` 获取一个类的构造函数参数
 
-```scala
+```typescript
 type ConstructorParameters<T extends new (...args: any) => any> = T extends new (...args: infer P) => any ? P : never;
 ```
 
 使用 demo:
 
-```crmsh
+```typescript
 // string | number | Date 
 type DateConstrParams = ConstructorParameters<typeof Date>
 ```
@@ -296,7 +296,7 @@ type DateConstrParams = ConstructorParameters<typeof Date>
 
 获取函数类型 T 的返回类型
 
-```scala
+```typescript
 type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
 ```
 
@@ -306,7 +306,7 @@ type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => i
 
 获取一个类的返回类型
 
-```scala
+```typescript
 type InstanceType<T extends new (...args: any) => any> = T extends new (...args: any) => infer R ? R : any;
 ```
 
@@ -320,7 +320,7 @@ type InstanceType<T extends new (...args: any) => any> = T extends new (...args:
 
 使用 `typescript` 有时候需要重写一个库提供的 interface 的某个属性，但是重写 `interface` 有可能会导致冲突：
 
-```angelscript
+```typescript
 interface Test {
   name: string
   say(word: string): string
@@ -334,7 +334,7 @@ interface Test2  extends Test{
 
 那么可以通过一些 type 来曲线救国实现我们的需求：
 
-```scala
+```typescript
 // 原理是，将 类型 T 的所有 K 属性置为 any，
 // 然后自定义 K 属性的类型，
 // 由于任何类型都可以赋予 any，所以不会产生冲突
@@ -353,7 +353,7 @@ interface Test2  extends Weaken<Test, 'name'>{
 
 有时候需要
 
-```ada
+```typescript
 const ALL_SUITS = ['hearts', 'diamonds', 'spades', 'clubs'] as const; // TS 3.4
 type SuitTuple = typeof ALL_SUITS; // readonly ['hearts', 'diamonds', 'spades', 'clubs']
 type Suit = SuitTuple[number];  // union type : 'hearts' | 'diamonds' | 'spades' | 'clubs'
@@ -363,7 +363,7 @@ type Suit = SuitTuple[number];  // union type : 'hearts' | 'diamonds' | 'spades'
 
 * enum 的 key 值 union
 
-  ```puppet
+  ```typescript
   enum Weekday {
     Mon = 1
     Tue = 2
@@ -373,7 +373,7 @@ type Suit = SuitTuple[number];  // union type : 'hearts' | 'diamonds' | 'spades'
   ```
 * enum 无法实现value-union , 但可以 object 的 value 值 union
 
-  ```arcade
+  ```typescript
   const lit = <V extends keyof any>(v: V) => v;
   const Weekday = {
     MONDAY: lit(1),
@@ -387,7 +387,7 @@ type Suit = SuitTuple[number];  // union type : 'hearts' | 'diamonds' | 'spades'
 
 前面我们讲到了 Record 类型，我们会常用到
 
-```yaml
+```typescript
 interface Model {
     name: string
     email: string
@@ -406,7 +406,7 @@ const validateRules: Record<keyof Model, Validator> = {
 
 这里出现了一个问题，`validateRules` 的 key 值必须和 `Model` 全部匹配，缺一不可，但实际上我们的表单可能只有其中的一两项，这时候我们就需要：
 
-```scala
+```typescript
 type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
 
 const validateRules: PartialRecord<keyof Model, Validator> = {

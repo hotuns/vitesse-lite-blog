@@ -61,14 +61,14 @@ const model2: Partial<Pick<Row, 'user'|'id'>>
 
 ## typescript 内置类型
 
-### Partial<T>
+### `Partial<T>`
 
 将类型 T 的所有属性标记为可选属性
 
 ```elm
 type Partial<T> = {
-    [P in keyof T]?: T[P];
-};
+    [P in keyof T]?: T[P]
+}
 ```
 
 使用场景：
@@ -312,7 +312,7 @@ type InstanceType<T extends new (...args: any) => any> = T extends new (...args:
 
 使用方式和 `ConstructorParameters<T>` 类似，不再赘述
 
-------
+- - -
 
 ## 自定义常用类型
 
@@ -361,7 +361,7 @@ type Suit = SuitTuple[number];  // union type : 'hearts' | 'diamonds' | 'spades'
 
 ### 根据 enum 生成 union
 
-- enum 的 key 值 union
+* enum 的 key 值 union
 
   ```puppet
   enum Weekday {
@@ -371,8 +371,7 @@ type Suit = SuitTuple[number];  // union type : 'hearts' | 'diamonds' | 'spades'
   }
   type WeekdayName = keyof typeof Weekday // 'Mon' | 'Tue' | 'Wed'
   ```
-
-- enum 无法实现value-union , 但可以 object 的 value 值 union
+* enum 无法实现value-union , 但可以 object 的 value 值 union
 
   ```arcade
   const lit = <V extends keyof any>(v: V) => v;
@@ -439,4 +438,3 @@ type T5 = Unpacked<Unpacked<Promise<string>[]>>;  // string
 ## 总结
 
 事实上，基于已有的类型别名，还有新推出的 `infer` 待推断类型，可以探索出各种各样的复杂组合玩法，这里不再多说，大家可以慢慢探索。
-

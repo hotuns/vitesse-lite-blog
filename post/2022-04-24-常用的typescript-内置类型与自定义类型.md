@@ -93,7 +93,7 @@ const model: Partial<AccountInfo> = {
 }
 ```
 
-### Required<T>
+### `Required<T>`
 
 与 Partial 相反，Required 将类型 T 的所有属性标记为必选属性
 
@@ -103,7 +103,7 @@ type Required<T> = {
 };
 ```
 
-### Readonly<T>
+### `Readonly<T>`
 
 将所有属性标记为 readonly, 即不能修改
 
@@ -113,7 +113,7 @@ type Readonly<T> = {
 };
 ```
 
-### Pick<T, K>
+### `Pick<T, K>`
 
 从 T 中过滤出属性 K
 
@@ -142,7 +142,7 @@ type CoreInfo = Pick<AccountInfo, 'name' | 'email'>
 */
 ```
 
-### Record<K, T>
+### `Record<K, T>`
 
 标记对象的 key value类型
 
@@ -175,7 +175,7 @@ const names = { foo: "hello", bar: "world", baz: "bye" };
 const lengths = mapObject(names, s => s.length);  // { foo: number, bar: number, baz: number }
 ```
 
-### Exclude<T, U>，Omit<T, K>
+### `Exclude<T, U>，Omit<T, K>`
 
 移除 T 中的 U 属性
 
@@ -204,7 +204,7 @@ type NonCoreInfo = Omit<AccountInfo, 'name' | 'email'>
 */
 ```
 
-### Extract<T, U>
+### `Extract<T, U>`
 
 `Exclude` 的反操作，取 T，U两者的交集属性
 
@@ -221,7 +221,7 @@ type A = Extract<'a'|'b'|'c'|'d' ,'b'|'c'|'e' >
 
 这个看起来没啥用，~~实际上还真没啥卵用~~，应该是我才疏学浅，还没发掘到其用途。
 
-### NonNullable<T>
+### `NonNullable<T>`
 
 排除类型 T 的 `null` | `undefined` 属性
 
@@ -241,7 +241,7 @@ function f2<T extends string | undefined>(x: T, y: NonNullable<T>) {
 }
 ```
 
-### Parameters<T>
+### `Parameters<T>`
 
 获取一个函数的所有参数类型
 
@@ -292,7 +292,7 @@ type ConstructorParameters<T extends new (...args: any) => any> = T extends new 
 type DateConstrParams = ConstructorParameters<typeof Date>
 ```
 
-### ReturnType<T>
+### `ReturnType<T>`
 
 获取函数类型 T 的返回类型
 
@@ -302,7 +302,7 @@ type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => i
 
 使用方式和 `Parameters<T>` 类似，不再赘述
 
-### InstanceType<T>
+### `InstanceType<T>`
 
 获取一个类的返回类型
 

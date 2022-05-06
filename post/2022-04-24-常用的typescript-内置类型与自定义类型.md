@@ -3,6 +3,7 @@ title: 常用的Typescript 内置类型与自定义类型
 description: 常用的Typescript 内置类型与自定义类型
 date: 2022-04-24T08:26:01.420Z
 ---
+[[TOC]]
 ## 背景
 
 大家用过 `Typescript` 都清楚，很多时候我们需要提前声明一个类型，再将类型赋予变量。
